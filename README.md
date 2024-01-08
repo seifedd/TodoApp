@@ -9,11 +9,11 @@
 
 # ➤ React Todo App
 
-This project was bootstrapped to learn React + Mobx. Also to demonstrate skills in mobx.
-Mobx is a state management library. That use actions (annotation) [check the docs](https://mobx.js.org/actions.html). I implemented a store TodoStore.js file where I store all the actions in that file.
-The actions include addTodo. deleteTodo, checkTodo, doneTodo, cancelTodo, updateTodo, and clear Completed.
+This project was created to learn React + Mobx. 
+Mobx is a state management library. That use actions (annotation) [check the docs](https://mobx.js.org/actions.html). I implemented a store file where I store all the actions.
+The actions include addTodo. deleteTodo, checkTodo, doneTodo, cancelTodo, updateTodo, and clearCompleted.
 
-All the observable has been implemented as properties of the class TodoStore
+All the observable has been implemented as properties of the class `TodoStore` which stores all the observables and actions.
 
 ```js
   @observable todoInput = react.createRef();
@@ -56,6 +56,9 @@ TodosCheckAll.wrappedComponent.propTypes = {
 ```bash
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#install-dependencies)
+
+# ➤ clone Repo
+git clone git@github.com:seifedd/TodoApp.git
 
 # ➤ install dependencies
 npm install

@@ -1,6 +1,11 @@
 <!-- ⚠️ This README has been generated from the file(s) "blueprint.md" ⚠️-->
+<p align= "center"> 
+<img src="https://github.com/seifedd/TodoApp/assets/21162602/40631b91-421e-4e10-bd9e-6b3058f6beb2" />
+</p>
+
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#react-todo-app)
+
 
 # ➤ React Todo App
 

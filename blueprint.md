@@ -1,8 +1,11 @@
-<!-- ⚠️ This README has been generated from the file(s) "blueprint.md" ⚠️-->{{template: logo}}
+{{template: logo}}
+{{template: title}}
 
-[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#react-todo-app)
+{{template: description}}
 
-# ➤ React Todo App
+{{template: license}}
+
+# React Todo App
 
 This project was bootstrapped to learn React + Mobx. Also to demonstrate skills in mobx.
 Mobx is a state management library. That use actions (annotation) [check the docs](https://mobx.js.org/actions.html). I implemented a store TodoStore.js file where I store all the actions in that file.
@@ -44,27 +47,17 @@ TodosCheckAll.wrappedComponent.propTypes = {
 };
 ```
 
-[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#build-setup)
-
-## ➤ Build Setup
+## Build Setup
 
 ```bash
-
-[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#install-dependencies)
-
-# ➤ install dependencies
+# install dependencies
 npm install
 
-
-[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#serve-at-localhost3000)
-
-# ➤ serve at localhost:3000
+# serve at localhost:3000
 npm start
 ```
 
-[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#specific-branch)
-
-## ➤ Specific branch
+## Specific branch
 
 If you want to checkout a certain branch:
 

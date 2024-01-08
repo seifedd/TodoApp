@@ -1,24 +1,11 @@
-import React from "react";
-import { observable, action, computed, configure, runInAction } from "mobx";
-
-configure({ enforceActions: true });
+import { action, computed, observable } from "mobx";
+import react from "react";
 
 class TodoStore {
-  @observable todoInput = React.createRef();
+  @observable todoInput = react.createRef();
   @observable filter = "all";
   @observable beforeEditCache = "";
   @observable todos = [];
-
-  @action retrieveTodos = () => {
-    const localStorage = window.localStorage;
-    const tempTodos = [];
-
-    if (tempTodos) tempTodos.forEach((todo) => (todo.editing = false));
-
-    runInAction(() => {
-      this.todos = tempTodos;
-    });
-  };
 
   @action addTodo = (event) => {
     if (event.key === "Enter") {
@@ -27,23 +14,12 @@ class TodoStore {
       if (todoInput.trim().length === 0) {
         return;
       }
-      const localStorage = window.localStorage;
 
-      localStorage.setItem(
-        "todos",
-        JSON.stringify({
-          title: todoInput,
-          completed: false,
-        })
-      );
-
-      runInAction(() => {
-        this.todos.push({
-          id: 1,
-          title: 1,
-          completed: false,
-          editing: false,
-        });
+      this.todos.push({
+        id: Date.now() + (Math.random() + ""),
+        title: todoInput,
+        completed: false,
+        editing: false,
       });
 
       this.todoInput.current.value = "";
@@ -51,18 +27,14 @@ class TodoStore {
   };
 
   @action deleteTodo = (id) => {
-    runInAction(() => {
-      const index = this.todos.findIndex((item) => item.id === id);
-      this.todos.splice(index, 1);
-    });
+    const index = this.todos.findIndex((item) => item.id === id);
+    this.todos.splice(index, 1);
   };
 
   @action checkTodo = (todo, event) => {
-    runInAction(() => {
-      todo.completed = !todo.completed;
-      const index = this.todos.findIndex((item) => item.id === todo.id);
-      this.todos.splice(index, 1, todo);
-    });
+    todo.completed = !todo.completed;
+    const index = this.todos.findIndex((item) => item.id === todo.id);
+    this.todos.splice(index, 1, todo);
   };
 
   @action editTodo = (todo, event) => {
@@ -83,10 +55,8 @@ class TodoStore {
       todo.title = event.target.value;
     }
 
-    runInAction(() => {
-      const index = this.todos.findIndex((item) => item.id === todo.id);
-      this.todos.splice(index, 1, todo);
-    });
+    const index = this.todos.findIndex((item) => item.id === todo.id);
+    this.todos.splice(index, 1, todo);
   };
 
   @action cancelEdit = (todo, event) => {
@@ -101,9 +71,8 @@ class TodoStore {
   @action checkAllTodos = (event) => {
     this.todos.forEach((todo) => (todo.completed = event.target.checked));
     event.persist();
-    runInAction(() => {
-      this.todos.forEach((todo) => (todo.completed = event.target.checked));
-    });
+
+    this.todos.forEach((todo) => (todo.completed = event.target.checked));
   };
 
   @action updateFilter = (filter) => {
@@ -115,35 +84,32 @@ class TodoStore {
       .filter((todo) => todo.completed)
       .map((todo) => todo.id);
 
-    runInAction(() => {
-      this.todos = this.todos.filter((todo) => !todo.completed);
-    });
+    this.todos = this.todos.filter((todo) => !todo.completed);
   };
 
-  // @computed get todosCompletedCount() {
-  //   return this.todos.filter((todo) => todo.completed).length;
-  // }
+  @computed get todosCompletedCount() {
+    return this.todos.filter((todo) => todo.completed).length;
+  }
 
-  // @computed get todosFiltered() {
-  //   if (this.filter === "all") {
-  //     return this.todos;
-  //   } else if (this.filter === "active") {
-  //     return this.todos.filter((todo) => !todo.completed);
-  //   } else if (this.filter === "completed") {
-  //     return this.todos.filter((todo) => todo.completed);
-  //   }
+  @computed get todosFiltered() {
+    if (this.filter === "all") {
+      return this.todos;
+    } else if (this.filter === "active") {
+      return this.todos.filter((todo) => !todo.completed);
+    } else if (this.filter === "completed") {
+      return this.todos.filter((todo) => todo.completed);
+    }
 
-  //   return this.todos;
-  // }
+    return this.todos;
+  }
 
-  // @computed get remaining() {
-  //   return this.todos.filter((todo) => !todo.completed).length;
-  // }
+  @computed get remaining() {
+    return this.todos.filter((todo) => !todo.completed).length;
+  }
 
-  // @computed get anyRemaining() {
-  //   return this.remaining !== 0;
-  // }
+  @computed get anyRemaining() {
+    return this.remaining !== 0;
+  }
 }
-
 const store = new TodoStore();
 export default store;
